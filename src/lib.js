@@ -11,10 +11,9 @@ const CHANGEOVER_DATES = [
   [1679792400000, 1698541200000]
 ];
 
-function utcStringToBerlinDate(dateString) {
-  const dateMatch = dateString.match(/\d+/g)
-  const inputTimestamp = Date.UTC(dateMatch[0], +(dateMatch[1]) - 1, dateMatch[2], dateMatch[3], dateMatch[4], dateMatch[5]);
-  const yearOffset = +(dateMatch[0]) - firstYear;
+function utcToBerlin(d) {
+  const yearOffset = d.getUTCFullYear() - firstYear;
+  const inputTimestamp = d.getTime();
   let mod = 1;
   if(CHANGEOVER_DATES[yearOffset] === undefined) {
     throw new Error(`Unspecified year`);
@@ -24,9 +23,8 @@ function utcStringToBerlinDate(dateString) {
       mod=2;
     }
   }
-  const date = new Date();
-  date.setTime(inputTimestamp + HOURS[mod]);
-  return date;
+  d.setTime(inputTimestamp + HOURS[mod]);
+  return d;
 }
 
-module.exports = {utcStringToBerlinDate};
+module.exports = {utcToBerlin};

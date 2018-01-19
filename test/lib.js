@@ -1,14 +1,14 @@
 const assert = require('assert');
-const {utcStringToBerlinDate} = require('../dist/lib.js');
+const {utcToBerlin} = require('../dist/lib.js');
 
 const testFn = t => {
   it(`transforms the hour part of ${t.input} into ${t.output}`, () => {
-    const date = utcStringToBerlinDate(t.input);
+    const date = utcToBerlin(new Date(t.input));
     assert.equal(date.getUTCHours(), t.output);
   });
 };
 
-describe('utcStringToBerlinDate(); simple cases', () => {
+describe('utcToBerlin(); simple cases', () => {
   const tests = [
     { input: '2018-01-22T07:00:00Z', output: 8 },
     { input: '2018-06-22T07:00:00Z', output: 9 },
@@ -21,7 +21,7 @@ describe('utcStringToBerlinDate(); simple cases', () => {
   tests.forEach(testFn);
 });
 
-describe('utcStringToBerlinDate(); edge cases', () => {
+describe('utcToBerlin(); edge cases', () => {
   const tests = [
     { input: '2018-03-25T00:59:59Z', output: 1 },
     { input: '2018-03-25T01:00:00Z', output: 3 },

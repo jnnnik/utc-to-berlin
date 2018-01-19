@@ -1,5 +1,5 @@
 {
-  "name": "utc-string-to-berlin-date",
+  "name": "utc-to-berlin",
   "version": "0.1.0",
   "description": "Convert Date objects from UTC to Europe/Berlin timezone",
   "main": "dist/lib.js",
