@@ -1,0 +1,18 @@
+{
+  "name": "utc-string-to-berlin-date",
+  "version": "0.1.0",
+  "description": "Convert Date objects from UTC to Europe/Berlin timezone",
+  "main": "dist/lib.js",
+  "author": "Jannik Lemberg",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "mocha": "^5.0.0",
+    "uglify-js": "^3.3.7"
+  },
+  "scripts": {
+    "build": "node_modules/.bin/babel src/lib.js | node_modules/.bin/uglifyjs --toplevel -mco dist/lib.js",
+    "test": "node_modules/.bin/mocha test/lib.js"
+  }
+}
